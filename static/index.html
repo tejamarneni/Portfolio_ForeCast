@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Forecaster</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Portfolio Performance Forecaster</h1>
+
+    <section class="card">
+      <div class="settings-grid">
+        <div>
+          <label for="initial-investment">Starting Balance ($)</label>
+          <input type="number" id="initial-investment" value="10000" step="500">
+        </div>
+        <div>
+          <label for="horizon-days">Horizon (Trading Days)</label>
+          <input type="number" id="horizon-days" value="252" step="21">
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <h3>Asset Allocations</h3>
+      <div id="allocations-container">
+        <div class="row">
+          <input type="text" class="ticker-input" placeholder="Ticker" value="SCHG">
+          <input type="number" step="0.05" class="weight-input" placeholder="Weight" value="0.80">
+          <button type="button" class="btn-del" onclick="removeRow(this)">✕</button>
+        </div>
+        <div class="row">
+          <input type="text" class="ticker-input" placeholder="Ticker" value="SCHX">
+          <input type="number" step="0.05" class="weight-input" placeholder="Weight" value="0.20">
+          <button type="button" class="btn-del" onclick="removeRow(this)">✕</button>
+        </div>
+      </div>
+
+      <div class="action-bar">
+        <button type="button" class="btn-secondary" onclick="addRow()">+ Add Asset</button>
+        <span id="weight-status">Total Allocation: 100.0%</span>
+      </div>
+
+      <div id="error-message" class="error-box hidden"></div>
+      <button type="button" id="run-btn" class="btn-primary" onclick="fetchForecast()">Run Simulation</button>
+    </section>
+
+    <section id="metrics-card" class="metrics-grid hidden">
+      <div class="metric-item">
+        <span class="metric-label">Median Final Value</span>
+        <span class="metric-value" id="metric-final-val">-</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-label">Expected Annual Return</span>
+        <span class="metric-value" id="metric-drift">-</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-label">Annual Volatility</span>
+        <span class="metric-value" id="metric-vol">-</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-label">95% Horizon VaR</span>
+        <span class="metric-value" id="metric-var">-</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <canvas id="forecastChart" height="120"></canvas>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

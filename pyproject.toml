@@ -9,7 +9,7 @@ description = "Financial portfolio forecasting, risk modeling, and backtesting e
 readme = "README.md"
 requires-python = ">=3.14"
 authors = [
-    { name = "Your Name", email = "you@example.com" }
+    { name = "Teja Marneni", email = "teja.marneni@outlook.com" }
 ]
 dependencies = [
     "fastapi>=0.110.0",
